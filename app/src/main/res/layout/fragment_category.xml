@@ -24,6 +24,7 @@
        android:layout_width="match_parent"
        tools:listitem="@layout/item_rv_menu"
        android:layout_height="0dp"
+       app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
        app:layout_constraintBottom_toBottomOf="parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

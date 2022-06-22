@@ -5,6 +5,7 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import uz.orifjon.dictionaryinrxkotlin.database.dao.CategoryDao
+import uz.orifjon.dictionaryinrxkotlin.database.dao.CategoryDaoRx
 import uz.orifjon.dictionaryinrxkotlin.database.dao.WordDao
 import uz.orifjon.dictionaryinrxkotlin.database.entity.Category
 import uz.orifjon.dictionaryinrxkotlin.database.entity.Word
@@ -13,6 +14,7 @@ import uz.orifjon.dictionaryinrxkotlin.database.entity.Word
 abstract class AppDatabase : RoomDatabase() {
 
     abstract fun categoryDao(): CategoryDao
+    abstract fun categoryDaoRx(): CategoryDaoRx
     abstract fun wordDao(): WordDao
 
     companion object {

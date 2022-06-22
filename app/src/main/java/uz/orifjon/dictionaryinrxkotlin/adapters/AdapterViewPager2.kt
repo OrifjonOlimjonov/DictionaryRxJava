@@ -6,7 +6,7 @@ import androidx.viewpager2.adapter.FragmentStateAdapter
 import uz.orifjon.dictionaryinrxkotlin.database.entity.Category
 import uz.orifjon.dictionaryinrxkotlin.fragment.ViewPagerListFragment
 
-class AdapterViewPager2(fragmentActivity: FragmentActivity,var list:ArrayList<Category>) :
+class AdapterViewPager2(fragmentActivity: FragmentActivity,var list:List<Category>) :
     FragmentStateAdapter(fragmentActivity) {
 
     override fun getItemCount(): Int = list.size

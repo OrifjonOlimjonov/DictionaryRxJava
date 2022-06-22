@@ -22,9 +22,15 @@ class MainActivity : AppCompatActivity()   {
         setContentView(binding.root)
 
         AppDatabase.getDatabase(this).categoryDao().addCategory(Category(name = "Futbol"))
-        AppDatabase.getDatabase(this).categoryDao().addCategory(Category(name = "Salom"))
-        AppDatabase.getDatabase(this).categoryDao().addCategory(Category(name = "Maktab"))
-        AppDatabase.getDatabase(this).categoryDao().addCategory(Category(name = "Kollej"))
+        AppDatabase.getDatabase(this).wordDao().addWord(Word(name = "salom", translate = "Uzun", courseId = 1, image = ByteArray(2)))
+        AppDatabase.getDatabase(this).wordDao().addWord(Word(name = "salom", translate = "Uzun", courseId = 1, image = ByteArray(2)))
+        AppDatabase.getDatabase(this).wordDao().addWord(Word(name = "salom", translate = "Uzun", courseId = 1, image = ByteArray(2)))
+        AppDatabase.getDatabase(this).wordDao().addWord(Word(name = "salom", translate = "Uzun", courseId = 1, image = ByteArray(2)))
+        AppDatabase.getDatabase(this).wordDao().addWord(Word(name = "salom", translate = "Uzun", courseId = 1, image = ByteArray(2)))
+        AppDatabase.getDatabase(this).wordDao().addWord(Word(name = "salom", translate = "Uzun", courseId = 1, image = ByteArray(2)))
+        AppDatabase.getDatabase(this).wordDao().addWord(Word(name = "salom", translate = "Uzun", courseId = 1, image = ByteArray(2)))
+        AppDatabase.getDatabase(this).wordDao().addWord(Word(name = "salom", translate = "Uzun", courseId = 1, image = ByteArray(2)))
+        AppDatabase.getDatabase(this).wordDao().addWord(Word(name = "salom", translate = "Uzun", courseId = 1, image = ByteArray(2)))
         AppDatabase.getDatabase(this).wordDao().addWord(Word(name = "salom", translate = "Uzun", courseId = 1, image = ByteArray(2)))
         val navigationHost = supportFragmentManager.findFragmentById(R.id.fragmentContainerView) as NavHostFragment
         val navController = navigationHost.navController

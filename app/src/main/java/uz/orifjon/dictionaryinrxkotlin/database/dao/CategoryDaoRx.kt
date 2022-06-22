@@ -5,7 +5,7 @@ import io.reactivex.rxjava3.core.Flowable
 import uz.orifjon.dictionaryinrxkotlin.database.entity.Category
 
 @Dao
-interface CategoryDao {
+interface CategoryDaoRx {
 
     @Insert
     fun addCategory(category: Category)
@@ -17,7 +17,7 @@ interface CategoryDao {
     fun deleteCategory(category: Category)
 
     @Query("SELECT * FROM category")
-    fun listCategory():List<Category>
+    fun listCategory():Flowable<List<Category>>
 
 
 }

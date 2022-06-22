@@ -34,7 +34,7 @@ class ViewPagerListFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentViewPagerListBinding.inflate(inflater)
-        adapter = AdapterRecyclerView {
+        adapter = AdapterRecyclerView {word ->
 
         }
 

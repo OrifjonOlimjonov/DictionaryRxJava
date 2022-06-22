@@ -24,6 +24,10 @@
         app:layout_constraintRight_toRightOf="parent"
         android:layout_width="match_parent"
         android:background="@color/white"
+        app:tabIndicatorColor="#FCB600"
+        app:tabMode="scrollable"
+        app:tabTextColor="#8D9BA8"
+        app:tabSelectedTextColor="#FCB600"
         android:layout_height="wrap_content"/>
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/viewPager2"
