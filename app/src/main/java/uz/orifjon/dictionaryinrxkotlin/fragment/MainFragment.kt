@@ -38,7 +38,7 @@ class MainFragment : Fragment() {
         list = ArrayList()
         bottomNavigationView = requireActivity().findViewById(R.id.bottomNavigation)
         binding.toolbar.setOnMenuItemClickListener {
-            if(it.itemId == R.id.btnAdd){
+            if (it.itemId == R.id.btnAdd) {
                 findNavController().navigate(R.id.categoryFragment)
             }
             true
@@ -48,7 +48,7 @@ class MainFragment : Fragment() {
             .observeOn(AndroidSchedulers.mainThread()).subscribeOn(Schedulers.io()).subscribe {
                 list = ArrayList(it)
             }
-        if(list.size == 0 ) {
+        if (list.size == 0) {
             Toast.makeText(requireContext(), "Ma'lumotlar mavjud emas!!", Toast.LENGTH_SHORT).show()
         }
         adapter = AdapterViewPager2(

@@ -48,9 +48,11 @@ class CategoryFragment : Fragment(), NavigationBarView.OnItemSelectedListener  {
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
             when(item.itemId){
                 R.id.categoryFragment->{
+                    findNavController().popBackStack()
                     findNavController().navigate(R.id.categoryFragment)
                 }
                 R.id.wordsFragment->{
+                    findNavController().popBackStack()
                     findNavController().navigate(R.id.wordsFragment)
                 }
             }
