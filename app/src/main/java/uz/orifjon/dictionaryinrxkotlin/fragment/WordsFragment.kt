@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.OnBackPressedCallback
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationBarView
@@ -27,7 +28,7 @@ class WordsFragment : Fragment() , NavigationBarView.OnItemSelectedListener  {
         bottomNavigation = requireActivity().findViewById(R.id.bottomNavigation2)
         bottomNavigation.visibility = View.VISIBLE
 
-        bottomNavigation.setOnItemSelectedListener(this)
+     //   bottomNavigation.setOnItemSelectedListener(this)
 
 
 
@@ -39,6 +40,17 @@ class WordsFragment : Fragment() , NavigationBarView.OnItemSelectedListener  {
             bottomNavigation = requireActivity().findViewById(R.id.bottomNavigation2)
             bottomNavigation.visibility = View.INVISIBLE
         }
+        val callback: OnBackPressedCallback =
+            object : OnBackPressedCallback(true) {
+                override fun handleOnBackPressed() {
+                    bottomNavigation = requireActivity().findViewById(R.id.bottomNavigation)
+                    findNavController().popBackStack()
+                    bottomNavigation.visibility = View.VISIBLE
+                    bottomNavigation = requireActivity().findViewById(R.id.bottomNavigation2)
+                    bottomNavigation.visibility = View.INVISIBLE
+                }
+            }
+        requireActivity().onBackPressedDispatcher.addCallback(requireActivity(), callback)
 
 
         return binding.root
@@ -57,5 +69,7 @@ class WordsFragment : Fragment() , NavigationBarView.OnItemSelectedListener  {
         }
         return false
     }
+
+
 
 }

@@ -22,5 +22,6 @@ data class Word(
     val translate: String,
     @ColumnInfo(name = "course_id")
     val courseId:Long,
-    val image:ByteArray
+    val image:ByteArray,
+    var isLike:Int = 0
 )
