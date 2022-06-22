@@ -52,5 +52,6 @@ dependencies {
     implementation 'io.reactivex.rxjava3:rxandroid:3.0.0'
     implementation 'io.reactivex.rxjava3:rxkotlin:3.0.1'
     implementation 'androidx.room:room-rxjava3:2.4.2'
+    implementation 'com.vmadalin:easypermissions-ktx:1.0.0'
 
 }

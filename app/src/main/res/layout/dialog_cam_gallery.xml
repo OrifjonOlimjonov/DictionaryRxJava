@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+<androidx.cardview.widget.CardView
+    android:layout_width="match_parent"
+    app:cardCornerRadius="@dimen/_10sdp"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:padding="@dimen/_10sdp"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:layout_height="match_parent">
+    <TextView
+        android:id="@+id/camera"
+        android:text="Kamera orqali yuklash"
+        android:textSize="@dimen/_20ssp"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        android:layout_width="wrap_content"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:layout_height="wrap_content"
+        />
+    <TextView
+        android:id="@+id/gallery"
+        android:text="Gallery orqali yuklash"
+        android:layout_width="wrap_content"
+        android:textSize="@dimen/_20ssp"
+        android:layout_marginBottom="@dimen/_10sdp"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        android:layout_marginTop="@dimen/_30sdp"
+        android:layout_height="wrap_content"
+        />
+    </LinearLayout>
+</androidx.cardview.widget.CardView>
+</LinearLayout>
