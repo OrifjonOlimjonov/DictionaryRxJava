@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fragment.AddWordFragment">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?actionBarSize"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:navigationIcon="@drawable/back"
+        app:title="So’z qo’shish"
+        app:titleTextColor="@color/black" />
+    <ImageView
+        android:id="@+id/imageSymbol"
+        app:layout_constraintTop_toBottomOf="@id/toolbar"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintVertical_bias="0.05"
+        android:background="@drawable/placeholde"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:scaleType="centerCrop"
+        android:layout_width="@dimen/_120sdp"
+        android:layout_height="@dimen/_100sdp"/>
+    <TextView
+        android:id="@+id/tv1"
+        app:layout_constraintTop_toBottomOf="@id/imageSymbol"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintVertical_bias="0.01"
+        android:textColor="@color/black"
+        android:textSize="@dimen/_11ssp"
+        android:text="So’zga doir rasm qo’ying"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+    <TextView
+        android:id="@+id/tv"
+        app:layout_constraintTop_toBottomOf="@id/tv1"
+        app:layout_constraintLeft_toLeftOf="@id/line"
+        app:layout_constraintVertical_bias="0.01"
+        android:layout_marginTop="@dimen/_20sdp"
+        app:layout_constraintHorizontal_bias="0"
+        android:textColor="#99000000"
+        android:textSize="@dimen/_11ssp"
+        android:text="Kategoriyalardan birini tanlang"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <LinearLayout
+        android:id="@+id/line"
+        app:layout_constraintTop_toBottomOf="@id/tv"
+        android:layout_marginTop="@dimen/_5sdp"
+        android:background="@drawable/edittext_background"
+        android:layout_width="@dimen/_280sdp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_height="@dimen/_40sdp">
+        <androidx.appcompat.widget.AppCompatSpinner
+            android:id="@+id/spinner"
+            android:layout_width="@dimen/_280sdp"
+            android:layout_height="@dimen/_40sdp"/>
+    </LinearLayout>
+    <TextView
+        android:id="@+id/tv2"
+        app:layout_constraintTop_toBottomOf="@id/line"
+        app:layout_constraintLeft_toLeftOf="@id/line"
+        app:layout_constraintVertical_bias="0.02"
+        app:layout_constraintHorizontal_bias="0"
+        android:textColor="#99000000"
+        android:textSize="@dimen/_11ssp"
+        android:text="So’zni kiriting"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+    <EditText
+        android:id="@+id/edittext"
+        android:layout_width="@dimen/_280sdp"
+        android:layout_height="@dimen/_40sdp"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:paddingLeft="@dimen/_6sdp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:background="@drawable/edittext_background"
+        android:textColor="@color/black"
+        app:layout_constraintTop_toBottomOf="@id/tv2" />
+
+    <TextView
+        android:id="@+id/tv3"
+        app:layout_constraintTop_toBottomOf="@id/edittext"
+        app:layout_constraintLeft_toLeftOf="@id/edittext"
+        app:layout_constraintVertical_bias="0.02"
+        app:layout_constraintHorizontal_bias="0"
+        android:textColor="#99000000"
+        android:textSize="@dimen/_11ssp"
+        android:text="Tarjimasini kiriting"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+    <EditText
+        android:id="@+id/edittext_1"
+        android:layout_width="@dimen/_280sdp"
+        android:layout_height="@dimen/_40sdp"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:paddingLeft="@dimen/_6sdp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:background="@drawable/edittext_background"
+        android:textColor="@color/black"
+        app:layout_constraintTop_toBottomOf="@id/tv3" />
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnCancel"
+        android:layout_width="@dimen/_100sdp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:background="@drawable/btn_back_save"
+        android:padding="@dimen/_4sdp"
+        android:text="Bekor qilish"
+        android:textColor="@color/white"
+        app:layout_constraintHorizontal_bias="0.9"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@id/btnSave"
+        app:layout_constraintTop_toBottomOf="@id/edittext_1" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnSave"
+        android:layout_width="@dimen/_100sdp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:background="@drawable/btn_back_save_1"
+        android:text="Saqlash"
+        android:textColor="@color/white"
+        app:layout_constraintHorizontal_bias="1"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="@id/edittext_1"
+        app:layout_constraintTop_toBottomOf="@id/edittext_1" />
+</androidx.constraintlayout.widget.ConstraintLayout>

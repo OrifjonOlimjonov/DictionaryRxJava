@@ -6,17 +6,24 @@ import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationBarView
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
+import io.reactivex.rxjava3.schedulers.Schedulers
 import uz.orifjon.dictionaryinrxkotlin.R
+import uz.orifjon.dictionaryinrxkotlin.adapters.AdapterRecyclerView
+import uz.orifjon.dictionaryinrxkotlin.database.AppDatabase
 import uz.orifjon.dictionaryinrxkotlin.databinding.FragmentWordsBinding
 
 class WordsFragment : Fragment() , NavigationBarView.OnItemSelectedListener  {
 
     private lateinit var binding:FragmentWordsBinding
     private lateinit var bottomNavigation: BottomNavigationView
+    private lateinit var adapter:AdapterRecyclerView
+    private var size = 0
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -27,11 +34,29 @@ class WordsFragment : Fragment() , NavigationBarView.OnItemSelectedListener  {
         bottomNavigation.visibility = View.INVISIBLE
         bottomNavigation = requireActivity().findViewById(R.id.bottomNavigation2)
         bottomNavigation.visibility = View.VISIBLE
+        adapter = AdapterRecyclerView { word ->
 
+        }
      //   bottomNavigation.setOnItemSelectedListener(this)
+        AppDatabase.getDatabase(requireContext()).wordDao().listWord().observeOn(AndroidSchedulers.mainThread())
+            .subscribeOn(Schedulers.io())
+            .subscribe {
+                adapter.submitList(it)
+                size = it.size
+            }
+        if(size == 0){
+            Toast.makeText(requireContext(), "Ma'lumotlar mavjud emas!!", Toast.LENGTH_SHORT).show()
+        }
+        binding.rv.adapter = adapter
 
-
-
+        binding.toolbar.setOnMenuItemClickListener {
+            when(it.itemId){
+                R.id.btnAdd->{
+                        findNavController().navigate(R.id.addWordFragment)
+                }
+            }
+            true
+        }
 
         binding.toolbar.setNavigationOnClickListener {
             bottomNavigation = requireActivity().findViewById(R.id.bottomNavigation)

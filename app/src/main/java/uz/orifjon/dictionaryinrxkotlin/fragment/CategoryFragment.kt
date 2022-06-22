@@ -1,11 +1,16 @@
 package uz.orifjon.dictionaryinrxkotlin.fragment
 
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
+import android.widget.PopupMenu
+import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
+import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -14,44 +19,111 @@ import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.schedulers.Schedulers
 import uz.orifjon.dictionaryinrxkotlin.R
 import uz.orifjon.dictionaryinrxkotlin.adapters.AdapterRecyclerView
+import uz.orifjon.dictionaryinrxkotlin.adapters.AdapterRecyclerViewCategory
 import uz.orifjon.dictionaryinrxkotlin.database.AppDatabase
+import uz.orifjon.dictionaryinrxkotlin.database.entity.Category
 import uz.orifjon.dictionaryinrxkotlin.database.entity.Word
+import uz.orifjon.dictionaryinrxkotlin.databinding.DialogAddTabBinding
 import uz.orifjon.dictionaryinrxkotlin.databinding.FragmentCategoryBinding
 
 
-class CategoryFragment : Fragment(), NavigationBarView.OnItemSelectedListener  {
+class CategoryFragment : Fragment(), NavigationBarView.OnItemSelectedListener {
 
-    private lateinit var binding:FragmentCategoryBinding
-    private lateinit var bottomNavigation:BottomNavigationView
-    private lateinit var list:ArrayList<Word>
-    private lateinit var adapter:AdapterRecyclerView
+    private lateinit var binding: FragmentCategoryBinding
+    private lateinit var bottomNavigation: BottomNavigationView
+    private lateinit var list: ArrayList<Word>
+    private lateinit var adapter: AdapterRecyclerViewCategory
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentCategoryBinding.inflate(inflater,container,false)
+        binding = FragmentCategoryBinding.inflate(inflater, container, false)
         bottomNavigation = requireActivity().findViewById(R.id.bottomNavigation)
         bottomNavigation.visibility = View.INVISIBLE
         bottomNavigation = requireActivity().findViewById(R.id.bottomNavigation2)
         bottomNavigation.visibility = View.VISIBLE
 
 //         bottomNavigation.setOnItemSelectedListener(this)
+        adapter = AdapterRecyclerViewCategory { category, item ->
+            val popup = PopupMenu(requireContext(),item)
+            popup.inflate(R.menu.popup)
 
-        AppDatabase.getDatabase(requireContext()).wordDao().listWord().observeOn(AndroidSchedulers.mainThread())
+            popup.setOnMenuItemClickListener(PopupMenu.OnMenuItemClickListener { item: MenuItem? ->
+
+                when (item!!.itemId) {
+                    R.id.btnEdit -> {
+                        val alertDialog = AlertDialog.Builder(requireContext())
+                        val binding: DialogAddTabBinding =
+                            DialogAddTabBinding.inflate(layoutInflater)
+                        alertDialog.setView(binding.root)
+                        val alertDialog1 = alertDialog.create()
+                        binding.edittext.setText(category.name)
+                        alertDialog1.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+                        binding.btnCancel.setOnClickListener { view1 -> alertDialog1.dismiss() }
+                        binding.btnSave.setOnClickListener { view12 ->
+                            val text = binding.edittext.text.toString()
+                            if (text.isEmpty()) {
+                                Toast.makeText(
+                                    requireContext(),
+                                    "Maydonni to'ldiring!",
+                                    Toast.LENGTH_SHORT
+                                ).show()
+                            } else {
+                                val category1 = Category(id = category.id, name = text)
+                                AppDatabase.getDatabase(requireContext()).categoryDaoRx()
+                                    .addCategory(category1)
+                                alertDialog1.dismiss()
+                            }
+                        }
+                        alertDialog1.show()
+                    }
+                    R.id.btnDelete -> {
+                        AppDatabase.getDatabase(requireContext()).categoryDaoRx()
+                            .deleteCategory(category)
+                    }
+
+                }
+
+                true
+            })
+
+            popup.show()
+        }
+        AppDatabase.getDatabase(requireContext()).categoryDaoRx().listCategory()
+            .observeOn(AndroidSchedulers.mainThread())
             .subscribeOn(Schedulers.io())
             .subscribe {
-                adapter.submitList(it as ArrayList<Word>)
+                adapter.submitList(it)
             }
-        adapter = AdapterRecyclerView {word ->
 
-        }
 
         binding.rv.adapter = adapter
 
         binding.toolbar.setOnMenuItemClickListener {
-            when(it.itemId){
-                R.id.btnAdd->{
-
+            when (it.itemId) {
+                R.id.btnAdd -> {
+                    val alertDialog = AlertDialog.Builder(requireContext())
+                    val binding: DialogAddTabBinding = DialogAddTabBinding.inflate(layoutInflater)
+                    alertDialog.setView(binding.root)
+                    val alertDialog1 = alertDialog.create()
+                    alertDialog1.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+                    binding.btnCancel.setOnClickListener { view1 -> alertDialog1.dismiss() }
+                    binding.btnSave.setOnClickListener { view12 ->
+                        val text = binding.edittext.text.toString()
+                        if (text.isEmpty()) {
+                            Toast.makeText(
+                                requireContext(),
+                                "Maydonni to'ldiring!",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        } else {
+                            val category = Category(name = text)
+                            AppDatabase.getDatabase(requireContext()).categoryDaoRx()
+                                .addCategory(category)
+                            alertDialog1.dismiss()
+                        }
+                    }
+                    alertDialog1.show()
                 }
             }
             true
@@ -83,22 +155,18 @@ class CategoryFragment : Fragment(), NavigationBarView.OnItemSelectedListener  {
     }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
-            when(item.itemId){
-                R.id.categoryFragment->{
-                    findNavController().popBackStack()
-                    findNavController().navigate(R.id.categoryFragment)
-                }
-                R.id.wordsFragment->{
-                    findNavController().popBackStack()
-                    findNavController().navigate(R.id.wordsFragment)
-                }
+        when (item.itemId) {
+            R.id.categoryFragment -> {
+                findNavController().popBackStack()
+                findNavController().navigate(R.id.categoryFragment)
             }
-            return false
+            R.id.wordsFragment -> {
+                findNavController().popBackStack()
+                findNavController().navigate(R.id.wordsFragment)
+            }
+        }
+        return false
     }
-
-
-
-
 
 
 }

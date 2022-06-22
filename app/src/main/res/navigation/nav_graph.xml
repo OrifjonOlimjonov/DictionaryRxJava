@@ -30,4 +30,14 @@
         android:name="uz.orifjon.dictionaryinrxkotlin.fragment.ViewPagerListFragment"
         android:label="fragment_view_pager_list"
         tools:layout="@layout/fragment_view_pager_list" />
+    <fragment
+        android:id="@+id/addWordFragment"
+        android:name="uz.orifjon.dictionaryinrxkotlin.fragment.AddWordFragment"
+        android:label="fragment_add_word"
+        tools:layout="@layout/fragment_add_word" />
+    <fragment
+        android:id="@+id/checkFragment"
+        android:name="uz.orifjon.dictionaryinrxkotlin.fragment.CheckFragment"
+        android:label="fragment_check"
+        tools:layout="@layout/fragment_check" />
 </navigation>
