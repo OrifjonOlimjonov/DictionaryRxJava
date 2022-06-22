@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/mainFragment">
+
+    <fragment
+        android:id="@+id/mainFragment"
+        android:name="uz.orifjon.dictionaryinrxkotlin.fragment.MainFragment"
+        android:label="fragment_main"
+        tools:layout="@layout/fragment_main" />
+    <fragment
+        android:id="@+id/likedFragment"
+        android:name="uz.orifjon.dictionaryinrxkotlin.fragment.LikedFragment"
+        android:label="fragment_liked"
+        tools:layout="@layout/fragment_liked" />
+    <fragment
+        android:id="@+id/categoryFragment"
+        android:name="uz.orifjon.dictionaryinrxkotlin.fragment.CategoryFragment"
+        android:label="fragment_category"
+        tools:layout="@layout/fragment_category" />
+    <fragment
+        android:id="@+id/wordsFragment"
+        android:name="uz.orifjon.dictionaryinrxkotlin.fragment.WordsFragment"
+        android:label="fragment_words"
+        tools:layout="@layout/fragment_words" />
+    <fragment
+        android:id="@+id/viewPagerListFragment"
+        android:name="uz.orifjon.dictionaryinrxkotlin.fragment.ViewPagerListFragment"
+        android:label="fragment_view_pager_list"
+        tools:layout="@layout/fragment_view_pager_list" />
+</navigation>
