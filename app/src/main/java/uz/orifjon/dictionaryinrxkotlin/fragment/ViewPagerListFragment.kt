@@ -5,7 +5,11 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
+import io.reactivex.rxjava3.schedulers.Schedulers
 import uz.orifjon.dictionaryinrxkotlin.R
+import uz.orifjon.dictionaryinrxkotlin.adapters.AdapterRecyclerView
+import uz.orifjon.dictionaryinrxkotlin.database.AppDatabase
 import uz.orifjon.dictionaryinrxkotlin.databinding.FragmentViewPagerListBinding
 
 private const val ARG_PARAM1 = "param1"
@@ -24,12 +28,24 @@ class ViewPagerListFragment : Fragment() {
     }
 
     private lateinit var binding: FragmentViewPagerListBinding
+    private lateinit var adapter: AdapterRecyclerView
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentViewPagerListBinding.inflate(inflater)
+        adapter = AdapterRecyclerView {
 
+        }
+
+        AppDatabase.getDatabase(requireContext()).wordDao().listWord()
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribeOn(Schedulers.io())
+            .subscribe {
+                adapter.submitList(it)
+            }
+
+        binding.rv.adapter = adapter
 
 
         return binding.root
