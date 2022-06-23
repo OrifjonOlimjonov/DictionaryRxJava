@@ -17,7 +17,7 @@ import uz.orifjon.dictionaryinrxkotlin.databinding.FragmentInfoBinding
 
 class InfoFragment : Fragment() {
 
-    private lateinit var binding: FragmentInfoBinding
+    private lateinit var binding:FragmentInfoBinding
     private lateinit var bottomNavigation: BottomNavigationView
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -32,7 +32,7 @@ class InfoFragment : Fragment() {
         if(word.isLike == 1){
             binding.btnLike.setBackgroundResource(R.drawable.btn_blur_is_liked)
         }else{
-            binding.btnLike.setBackgroundResource(R.drawable.is_disliked)
+            binding.btnLike.setBackgroundResource(R.drawable.btn_blur_is_disliked)
         }
         binding.tvName.text = word.name
         binding.tvInfo.text = word.translate
@@ -58,7 +58,7 @@ class InfoFragment : Fragment() {
         binding.btnLike.setOnClickListener {
             if (word.isLike == 1) {
                 word.isLike = 0
-                binding.btnLike.setBackgroundResource(R.drawable.is_disliked)
+                binding.btnLike.setBackgroundResource(R.drawable.btn_blur_is_disliked)
             } else {
                 word.isLike = 1
                 binding.btnLike.setBackgroundResource(R.drawable.btn_blur_is_liked)
