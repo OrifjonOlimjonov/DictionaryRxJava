@@ -46,10 +46,10 @@ class LikedFragment : Fragment() {
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe { item ->
                 adapter.submitList(item.filter { it.isLike == 1 })
-                val list = item.filter { it.isLike == 1 }
-                if(list.isEmpty()){
-                    Toast.makeText(requireContext(), "Ma'lumotlar mavjud emas!!", Toast.LENGTH_SHORT).show()
-                }
+//                val list = item.filter { it.isLike == 1 }
+//                if(list.isEmpty()){
+//                    Toast.makeText(requireContext(), "Ma'lumotlar mavjud emas!!", Toast.LENGTH_SHORT).show()
+//                }
             }
 
 

@@ -19,7 +19,7 @@ class AdapterRecyclerViewCategory(var onItemClick: (Category,View) -> Unit) :
         fun onBind(category: Category) {
             binding.tvName.text = category.name
             binding.tvInfo.visibility= View.GONE
-           itemView.setOnClickListener {
+           binding.btnInfo.setOnClickListener {
                 onItemClick(category,binding.btnInfo)
             }
         }
