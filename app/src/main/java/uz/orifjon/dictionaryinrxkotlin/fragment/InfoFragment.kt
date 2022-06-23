@@ -6,8 +6,11 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.OnBackPressedCallback
+import androidx.navigation.fragment.findNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import uz.orifjon.dictionaryinrxkotlin.R
+import uz.orifjon.dictionaryinrxkotlin.database.AppDatabase
 import uz.orifjon.dictionaryinrxkotlin.database.entity.Word
 import uz.orifjon.dictionaryinrxkotlin.databinding.FragmentInfoBinding
 
@@ -22,13 +25,15 @@ class InfoFragment : Fragment() {
     ): View {
         binding = FragmentInfoBinding.inflate(inflater)
         bottomNavigation = requireActivity().findViewById(R.id.bottomNavigation)
-        bottomNavigation.visibility = View.VISIBLE
-        bottomNavigation = requireActivity().findViewById(R.id.bottomNavigation2)
         bottomNavigation.visibility = View.INVISIBLE
         val word = arguments?.getSerializable("word") as Word
 
         binding.toolbar.title = word.name
-
+        if(word.isLike == 1){
+            binding.btnLike.setBackgroundResource(R.drawable.btn_blur_is_liked)
+        }else{
+            binding.btnLike.setBackgroundResource(R.drawable.is_disliked)
+        }
         binding.tvName.text = word.name
         binding.tvInfo.text = word.translate
         binding.img.setImageBitmap(
@@ -38,12 +43,36 @@ class InfoFragment : Fragment() {
                 word.image.size
             )
         )
+        binding.toolbar.setNavigationOnClickListener {
+            findNavController().popBackStack()
+        }
 
+        val callback: OnBackPressedCallback =
+            object : OnBackPressedCallback(true) {
+                override fun handleOnBackPressed() {
+                    findNavController().popBackStack()
+                }
+            }
+        requireActivity().onBackPressedDispatcher.addCallback(requireActivity(), callback)
 
-
+        binding.btnLike.setOnClickListener {
+            if (word.isLike == 1) {
+                word.isLike = 0
+                binding.btnLike.setBackgroundResource(R.drawable.is_disliked)
+            } else {
+                word.isLike = 1
+                binding.btnLike.setBackgroundResource(R.drawable.btn_blur_is_liked)
+            }
+            AppDatabase.getDatabase(requireContext()).wordDao().updateWord(word)
+        }
 
 
         return binding.root
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        bottomNavigation.visibility = View.VISIBLE
     }
 
 }

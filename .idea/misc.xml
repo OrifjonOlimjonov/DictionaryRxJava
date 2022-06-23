@@ -5,11 +5,15 @@
       <map>
         <entry key="..\:/Users/User/AndroidStudioProjects/Dictionaryinrxkotlin/app/src/main/res/drawable/btn_back_save.xml" value="0.17" />
         <entry key="..\:/Users/User/AndroidStudioProjects/Dictionaryinrxkotlin/app/src/main/res/drawable/btn_back_save_1.xml" value="0.17" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/Dictionaryinrxkotlin/app/src/main/res/drawable/btn_blur.xml" value="0.17" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/Dictionaryinrxkotlin/app/src/main/res/drawable/btn_blur_is_liked.xml" value="0.17" />
         <entry key="..\:/Users/User/AndroidStudioProjects/Dictionaryinrxkotlin/app/src/main/res/drawable/btn_navigation_home.xml" value="0.1515" />
         <entry key="..\:/Users/User/AndroidStudioProjects/Dictionaryinrxkotlin/app/src/main/res/drawable/btn_navigation_like.xml" value="0.1515" />
         <entry key="..\:/Users/User/AndroidStudioProjects/Dictionaryinrxkotlin/app/src/main/res/drawable/edittext_background.xml" value="0.17" />
         <entry key="..\:/Users/User/AndroidStudioProjects/Dictionaryinrxkotlin/app/src/main/res/drawable/home_click.xml" value="0.1515" />
         <entry key="..\:/Users/User/AndroidStudioProjects/Dictionaryinrxkotlin/app/src/main/res/drawable/home_unclick.xml" value="0.1515" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/Dictionaryinrxkotlin/app/src/main/res/drawable/is_disliked.xml" value="0.17" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/Dictionaryinrxkotlin/app/src/main/res/drawable/is_liked.xml" value="0.17" />
         <entry key="..\:/Users/User/AndroidStudioProjects/Dictionaryinrxkotlin/app/src/main/res/drawable/words.xml" value="0.17" />
         <entry key="..\:/Users/User/AndroidStudioProjects/Dictionaryinrxkotlin/app/src/main/res/layout/activity_main.xml" value="0.176" />
         <entry key="..\:/Users/User/AndroidStudioProjects/Dictionaryinrxkotlin/app/src/main/res/layout/delete_dialog.xml" value="0.16944444444444445" />
