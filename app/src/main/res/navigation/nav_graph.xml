@@ -40,4 +40,14 @@
         android:name="uz.orifjon.dictionaryinrxkotlin.fragment.CheckFragment"
         android:label="fragment_check"
         tools:layout="@layout/fragment_check" />
+    <fragment
+        android:id="@+id/editWordFragment"
+        android:name="uz.orifjon.dictionaryinrxkotlin.fragment.EditWordFragment"
+        android:label="fragment_edit_word"
+        tools:layout="@layout/fragment_edit_word" />
+    <fragment
+        android:id="@+id/infoFragment"
+        android:name="uz.orifjon.dictionaryinrxkotlin.fragment.InfoFragment"
+        android:label="fragment_info"
+        tools:layout="@layout/fragment_info" />
 </navigation>

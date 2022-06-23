@@ -26,6 +26,7 @@
         android:background="@color/white"
         app:tabIndicatorColor="#FCB600"
         app:tabMode="scrollable"
+        app:tabIndicatorGravity="top"
         app:tabTextColor="#8D9BA8"
         app:tabSelectedTextColor="#FCB600"
         android:layout_height="wrap_content"/>

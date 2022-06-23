@@ -34,7 +34,9 @@ class LikedFragment : Fragment() {
             true
         }
         adapter = AdapterRecyclerView { word ->
-
+            val bundle = Bundle()
+            bundle.putSerializable("word", word)
+            findNavController().navigate(R.id.infoFragment, bundle)
         }
 
         AppDatabase.getDatabase(requireContext()).wordDao().listWord()

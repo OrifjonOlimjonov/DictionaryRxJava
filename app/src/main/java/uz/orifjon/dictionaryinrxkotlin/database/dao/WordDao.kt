@@ -7,7 +7,7 @@ import uz.orifjon.dictionaryinrxkotlin.database.entity.Word
 @Dao
 interface WordDao {
 
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun addWord(word: Word)
 
     @Update
@@ -16,7 +16,13 @@ interface WordDao {
     @Delete
     fun deleteWord(word: Word)
 
-    @Query("SELECT * FROM word")
+    @Query("SELECT * FROM word ORDER BY name")
     fun listWord():Flowable<List<Word>>
+
+    @Query("SELECT * FROM word WHERE category_id = :id")
+    fun listIdWords(id:Int):Flowable<List<Word>>
+
+    @Query("SELECT * FROM word WHERE id = :id")
+    fun getFindById(id:Long):Word
 
 }

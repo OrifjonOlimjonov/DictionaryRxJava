@@ -12,11 +12,14 @@
         <entry key="..\:/Users/User/AndroidStudioProjects/Dictionaryinrxkotlin/app/src/main/res/drawable/home_unclick.xml" value="0.1515" />
         <entry key="..\:/Users/User/AndroidStudioProjects/Dictionaryinrxkotlin/app/src/main/res/drawable/words.xml" value="0.17" />
         <entry key="..\:/Users/User/AndroidStudioProjects/Dictionaryinrxkotlin/app/src/main/res/layout/activity_main.xml" value="0.176" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/Dictionaryinrxkotlin/app/src/main/res/layout/delete_dialog.xml" value="0.16944444444444445" />
         <entry key="..\:/Users/User/AndroidStudioProjects/Dictionaryinrxkotlin/app/src/main/res/layout/dialog_add_tab.xml" value="0.16944444444444445" />
         <entry key="..\:/Users/User/AndroidStudioProjects/Dictionaryinrxkotlin/app/src/main/res/layout/dialog_cam_gallery.xml" value="0.16944444444444445" />
         <entry key="..\:/Users/User/AndroidStudioProjects/Dictionaryinrxkotlin/app/src/main/res/layout/fragment_add_word.xml" value="0.16944444444444445" />
         <entry key="..\:/Users/User/AndroidStudioProjects/Dictionaryinrxkotlin/app/src/main/res/layout/fragment_category.xml" value="0.16006944444444443" />
         <entry key="..\:/Users/User/AndroidStudioProjects/Dictionaryinrxkotlin/app/src/main/res/layout/fragment_check.xml" value="0.16006944444444443" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/Dictionaryinrxkotlin/app/src/main/res/layout/fragment_edit_word.xml" value="0.16006944444444443" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/Dictionaryinrxkotlin/app/src/main/res/layout/fragment_info.xml" value="0.16944444444444445" />
         <entry key="..\:/Users/User/AndroidStudioProjects/Dictionaryinrxkotlin/app/src/main/res/layout/fragment_liked.xml" value="0.16944444444444445" />
         <entry key="..\:/Users/User/AndroidStudioProjects/Dictionaryinrxkotlin/app/src/main/res/layout/fragment_main.xml" value="0.16944444444444445" />
         <entry key="..\:/Users/User/AndroidStudioProjects/Dictionaryinrxkotlin/app/src/main/res/layout/fragment_view_pager_list.xml" value="0.16944444444444445" />

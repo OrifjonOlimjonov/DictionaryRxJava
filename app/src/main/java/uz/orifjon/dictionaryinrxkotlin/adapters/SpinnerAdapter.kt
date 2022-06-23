@@ -25,16 +25,10 @@ class SpinnerAdapter(var list:ArrayList<Category>): BaseAdapter() {
         } else {
             SpinnerItemBinding.bind(p1)
         }
-        if (p0 == 0) {
-            binding.spinText.setTextColor(Color.parseColor("#A8A3A3"))
-        } else {
-            binding.spinText.setTextColor(Color.BLACK)
-        }
+
         binding.spinText.text = list[p0].name
         return binding.root
     }
 
-    override fun isEnabled(position: Int): Boolean {
-        return position != 0
-    }
+
 }

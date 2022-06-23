@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.schedulers.Schedulers
 import uz.orifjon.dictionaryinrxkotlin.R
@@ -34,11 +35,14 @@ class ViewPagerListFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentViewPagerListBinding.inflate(inflater)
-        adapter = AdapterRecyclerView {word ->
 
+        adapter = AdapterRecyclerView {word ->
+            val bundle = Bundle()
+            bundle.putSerializable("word", word)
+            findNavController().navigate(R.id.infoFragment, bundle)
         }
 
-        AppDatabase.getDatabase(requireContext()).wordDao().listWord()
+        AppDatabase.getDatabase(requireContext()).wordDao().listIdWords(param1!!.toInt())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribeOn(Schedulers.io())
             .subscribe {

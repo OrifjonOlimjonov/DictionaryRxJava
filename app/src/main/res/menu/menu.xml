@@ -4,5 +4,5 @@
     <item android:id="@+id/btnAdd"
         app:showAsAction="always"
         android:title="add"
-        android:icon="@drawable/ic_baseline_add_24"/>
+        android:icon="@drawable/add_pencil"/>
 </menu>

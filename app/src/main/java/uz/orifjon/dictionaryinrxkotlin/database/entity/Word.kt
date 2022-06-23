@@ -4,13 +4,14 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.ForeignKey
 import androidx.room.PrimaryKey
+import java.io.Serializable
 
 @Entity(
     foreignKeys = [
         ForeignKey(
             entity = Category::class,
             parentColumns = arrayOf("id"),
-            childColumns = arrayOf("course_id"),
+            childColumns = arrayOf("category_id"),
             onDelete = ForeignKey.CASCADE
         )
     ]
@@ -20,8 +21,8 @@ data class Word(
     val id: Long = 0,
     val name: String,
     val translate: String,
-    @ColumnInfo(name = "course_id")
-    val courseId:Long,
+    @ColumnInfo(name = "category_id")
+    val categoryId:Long,
     val image:ByteArray,
     var isLike:Int = 0
-)
+):Serializable

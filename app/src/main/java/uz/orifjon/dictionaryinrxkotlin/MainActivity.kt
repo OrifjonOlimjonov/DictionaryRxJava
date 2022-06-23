@@ -17,16 +17,12 @@ class MainActivity : AppCompatActivity() {
         val navController = navigationHost.navController
         NavigationUI.setupWithNavController(binding.bottomNavigation, navController)
 
-
-        NavigationUI.setupWithNavController(binding.bottomNavigation2, navController)
+        val navController1 = navigationHost.navController
+        NavigationUI.setupWithNavController(binding.bottomNavigation2, navController1)
 
 
         // binding.bottomNavigation.setOnItemSelectedListener(this)
     }
 
-    override fun onBackPressed() {
-        super.onBackPressed()
-
-    }
 
 }

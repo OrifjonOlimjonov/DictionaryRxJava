@@ -18,7 +18,8 @@ class AdapterRecyclerViewCategory(var onItemClick: (Category,View) -> Unit) :
     inner class VH(var binding: ItemRvMenuBinding) : RecyclerView.ViewHolder(binding.root) {
         fun onBind(category: Category) {
             binding.tvName.text = category.name
-            binding.btnInfo.setOnClickListener {
+            binding.tvInfo.visibility= View.GONE
+           itemView.setOnClickListener {
                 onItemClick(category,binding.btnInfo)
             }
         }

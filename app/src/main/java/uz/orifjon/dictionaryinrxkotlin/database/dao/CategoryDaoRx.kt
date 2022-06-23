@@ -7,7 +7,7 @@ import uz.orifjon.dictionaryinrxkotlin.database.entity.Category
 @Dao
 interface CategoryDaoRx {
 
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun addCategory(category: Category)
 
     @Update

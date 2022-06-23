@@ -1,23 +1,26 @@
 package uz.orifjon.dictionaryinrxkotlin.adapters
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import uz.orifjon.dictionaryinrxkotlin.database.entity.Category
 import uz.orifjon.dictionaryinrxkotlin.database.entity.Word
 import uz.orifjon.dictionaryinrxkotlin.databinding.ItemRvBinding
+import uz.orifjon.dictionaryinrxkotlin.databinding.ItemRvMenuBinding
 
-class AdapterRecyclerView(var onItemClick: (Word) -> Unit) :
-    ListAdapter<Word, AdapterRecyclerView.VH>(MyDiffUtils()) {
+class AdapterRecyclerViewWord(var onItemClick: (Word, View) -> Unit) :
+    ListAdapter<Word, AdapterRecyclerViewWord.VH>(MyDiffUtils()) {
 
 
-    inner class VH(var binding: ItemRvBinding) : RecyclerView.ViewHolder(binding.root) {
+    inner class VH(var binding: ItemRvMenuBinding) : RecyclerView.ViewHolder(binding.root) {
         fun onBind(word: Word) {
             binding.tvName.text = word.name
-            binding.tvInfo.text = word.translate
-           itemView.setOnClickListener {
-                onItemClick(word)
+            binding.tvInfo.visibility= View.GONE
+            itemView.setOnClickListener {
+                onItemClick(word,binding.btnInfo)
             }
         }
     }
@@ -34,7 +37,7 @@ class AdapterRecyclerView(var onItemClick: (Word) -> Unit) :
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VH {
-        return VH(ItemRvBinding.inflate(LayoutInflater.from(parent.context), parent, false))
+        return VH(ItemRvMenuBinding.inflate(LayoutInflater.from(parent.context), parent, false))
     }
 
     override fun onBindViewHolder(holder: VH, position: Int) {

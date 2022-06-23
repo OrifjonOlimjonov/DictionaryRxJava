@@ -23,15 +23,15 @@ import uz.orifjon.dictionaryinrxkotlin.adapters.AdapterRecyclerViewCategory
 import uz.orifjon.dictionaryinrxkotlin.database.AppDatabase
 import uz.orifjon.dictionaryinrxkotlin.database.entity.Category
 import uz.orifjon.dictionaryinrxkotlin.database.entity.Word
+import uz.orifjon.dictionaryinrxkotlin.databinding.DeleteDialogBinding
 import uz.orifjon.dictionaryinrxkotlin.databinding.DialogAddTabBinding
 import uz.orifjon.dictionaryinrxkotlin.databinding.FragmentCategoryBinding
 
 
-class CategoryFragment : Fragment(), NavigationBarView.OnItemSelectedListener {
+class CategoryFragment : Fragment() {
 
     private lateinit var binding: FragmentCategoryBinding
     private lateinit var bottomNavigation: BottomNavigationView
-    private lateinit var list: ArrayList<Word>
     private lateinit var adapter: AdapterRecyclerViewCategory
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -48,9 +48,9 @@ class CategoryFragment : Fragment(), NavigationBarView.OnItemSelectedListener {
             val popup = PopupMenu(requireContext(),item)
             popup.inflate(R.menu.popup)
 
-            popup.setOnMenuItemClickListener(PopupMenu.OnMenuItemClickListener { item: MenuItem? ->
+            popup.setOnMenuItemClickListener(PopupMenu.OnMenuItemClickListener { item1: MenuItem? ->
 
-                when (item!!.itemId) {
+                when (item1!!.itemId) {
                     R.id.btnEdit -> {
                         val alertDialog = AlertDialog.Builder(requireContext())
                         val binding: DialogAddTabBinding =
@@ -71,15 +71,27 @@ class CategoryFragment : Fragment(), NavigationBarView.OnItemSelectedListener {
                             } else {
                                 val category1 = Category(id = category.id, name = text)
                                 AppDatabase.getDatabase(requireContext()).categoryDaoRx()
-                                    .addCategory(category1)
+                                    .updateCategory(category1)
                                 alertDialog1.dismiss()
                             }
                         }
                         alertDialog1.show()
                     }
                     R.id.btnDelete -> {
-                        AppDatabase.getDatabase(requireContext()).categoryDaoRx()
-                            .deleteCategory(category)
+                        val alertDialog = AlertDialog.Builder(requireContext())
+                        val binding: DeleteDialogBinding =
+                            DeleteDialogBinding.inflate(layoutInflater)
+                        alertDialog.setView(binding.root)
+                        val alertDialog1 = alertDialog.create()
+                        alertDialog1.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+                        binding.btnCancel.setOnClickListener { view1 -> alertDialog1.dismiss() }
+                        binding.btnDelete.setOnClickListener { view12 ->
+                            AppDatabase.getDatabase(requireContext()).categoryDaoRx()
+                                .deleteCategory(category)
+                            alertDialog1.dismiss()
+                        }
+                        alertDialog1.show()
+
                     }
 
                 }
@@ -154,19 +166,6 @@ class CategoryFragment : Fragment(), NavigationBarView.OnItemSelectedListener {
         return binding.root
     }
 
-    override fun onNavigationItemSelected(item: MenuItem): Boolean {
-        when (item.itemId) {
-            R.id.categoryFragment -> {
-                findNavController().popBackStack()
-                findNavController().navigate(R.id.categoryFragment)
-            }
-            R.id.wordsFragment -> {
-                findNavController().popBackStack()
-                findNavController().navigate(R.id.wordsFragment)
-            }
-        }
-        return false
-    }
 
 
 }
