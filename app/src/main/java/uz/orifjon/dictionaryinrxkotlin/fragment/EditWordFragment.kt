@@ -15,6 +15,7 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AlertDialog
 import androidx.core.content.FileProvider
 import androidx.navigation.fragment.findNavController
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import uz.orifjon.dictionaryinrxkotlin.R
 import uz.orifjon.dictionaryinrxkotlin.adapters.SpinnerAdapter
 import uz.orifjon.dictionaryinrxkotlin.database.AppDatabase
@@ -32,6 +33,7 @@ class EditWordFragment : Fragment() {
 
     private lateinit var binding: FragmentEditWordBinding
     private lateinit var currentPhotoPath: String
+    private lateinit var bottomNavigationView: BottomNavigationView
     private lateinit var adapter: SpinnerAdapter
     private lateinit var list: ArrayList<Category>
     override fun onCreateView(
@@ -39,7 +41,8 @@ class EditWordFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentEditWordBinding.inflate(inflater, container, false)
-
+        bottomNavigationView = requireActivity().findViewById(R.id.bottomNavigation2)
+        bottomNavigationView.visibility = View.INVISIBLE
         val id = arguments?.getLong("id")
         val word = AppDatabase.getDatabase(requireContext()).wordDao().getFindById(id!!)
         list = AppDatabase.getDatabase(requireContext()).categoryDao()
@@ -151,7 +154,11 @@ class EditWordFragment : Fragment() {
             .apply {
                 currentPhotoPath = absolutePath
             }
+    }
 
+    override fun onDestroyView() {
+        super.onDestroyView()
+        bottomNavigationView.visibility = View.VISIBLE
     }
 
 }

@@ -82,21 +82,26 @@ class AddWordFragment : Fragment(), EasyPermissions.PermissionCallbacks {
         }
 
         binding.btnSave.setOnClickListener {
+            
             val name = binding.edittext.text.toString()
             val translate = binding.edittext1.text.toString()
-            val id = list[binding.spinner.selectedItemPosition].id
-            val img = getBitmapFromView(binding.imageSymbol)
-            val byteStream = ByteArrayOutputStream()
-            img!!.compress(Bitmap.CompressFormat.PNG, 100, byteStream)
-            val byteArray = byteStream.toByteArray()
-            val word = Word(
-                name = name,
-                translate = translate,
-                categoryId = id,
-                image = byteArray
-            )
-            AppDatabase.getDatabase(requireContext()).wordDao().addWord(word)
-            findNavController().popBackStack()
+            if(name.isNotEmpty() && translate.isNotEmpty() && binding.spinner.selectedItemPosition > -1) {
+                val id = list[binding.spinner.selectedItemPosition].id
+                val img = getBitmapFromView(binding.imageSymbol)
+                val byteStream = ByteArrayOutputStream()
+                img!!.compress(Bitmap.CompressFormat.PNG, 100, byteStream)
+                val byteArray = byteStream.toByteArray()
+                val word = Word(
+                    name = name,
+                    translate = translate,
+                    categoryId = id,
+                    image = byteArray
+                )
+                AppDatabase.getDatabase(requireContext()).wordDao().addWord(word)
+                findNavController().popBackStack()
+            }else{
+                Toast.makeText(requireContext(), "Maydonlarni to'ldiring!!", Toast.LENGTH_SHORT).show()
+            }
         }
         binding.btnCancel.setOnClickListener {
             findNavController().popBackStack()
@@ -177,7 +182,6 @@ class AddWordFragment : Fragment(), EasyPermissions.PermissionCallbacks {
         grantResults: IntArray
     ) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-
         EasyPermissions.onRequestPermissionsResult(requestCode, permissions, grantResults, this)
     }
 

@@ -106,6 +106,9 @@ class CategoryFragment : Fragment() {
             .subscribeOn(Schedulers.io())
             .subscribe {
                 adapter.submitList(it)
+                if(it.isEmpty()){
+                    Toast.makeText(requireContext(), "Ma'lumotlar mavjud emas!!", Toast.LENGTH_SHORT).show()
+                }
             }
 
 

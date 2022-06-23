@@ -21,7 +21,8 @@ class LikedFragment : Fragment() {
 
     private lateinit var binding: FragmentLikedBinding
     private lateinit var adapter: AdapterRecyclerView
-    private var size = 0
+
+    private var size1 = 0
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -39,18 +40,19 @@ class LikedFragment : Fragment() {
             findNavController().navigate(R.id.infoFragment, bundle)
         }
 
+
         AppDatabase.getDatabase(requireContext()).wordDao().listWord()
-            .observeOn(AndroidSchedulers.mainThread())
             .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
             .subscribe { item ->
                 adapter.submitList(item.filter { it.isLike == 1 })
-                size = item.filter { it.isLike == 1 }.size
+                val list = item.filter { it.isLike == 1 }
+                if(list.isEmpty()){
+                    Toast.makeText(requireContext(), "Ma'lumotlar mavjud emas!!", Toast.LENGTH_SHORT).show()
+                }
             }
 
-        if (size == 0) {
-            Toast.makeText(requireContext(), "Like bosilganlar mavjud emas!!", Toast.LENGTH_SHORT)
-                .show()
-        }
+
         binding.rv.adapter = adapter
 
 

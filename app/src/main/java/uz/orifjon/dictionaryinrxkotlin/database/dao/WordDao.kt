@@ -19,7 +19,7 @@ interface WordDao {
     @Query("SELECT * FROM word ORDER BY name")
     fun listWord():Flowable<List<Word>>
 
-    @Query("SELECT * FROM word WHERE category_id = :id")
+    @Query("SELECT * FROM word WHERE category_id = :id ORDER BY name")
     fun listIdWords(id:Int):Flowable<List<Word>>
 
     @Query("SELECT * FROM word WHERE id = :id")
